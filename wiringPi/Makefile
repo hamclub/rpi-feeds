@@ -58,17 +58,17 @@ define Package/wiringPi/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gpio/gpio $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so.* $(1)/usr/lib/libwiringPiDev.so
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so.* $(1)/usr/lib/libwiringPi.so
-	#$(INSTALL_BIN) $(PKG_BUILD_DIR)/wiringPi/*.h $(1)/usr/include/
-	#$(INSTALL_BIN) $(PKG_BUILD_DIR)/devLib/*.h $(1)/usr/include/
+	$(CP) $(PKG_BUILD_DIR)/wiringPi/*.h $(1)/usr/include/
+	$(CP) $(PKG_BUILD_DIR)/devLib/*.h $(1)/usr/include/
 endef
 
-define Build/InstallDev
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
-	cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so* $(STAGING_DIR)/usr/lib/libwiringPiDev.so
-	cp $(PKG_BUILD_DIR)/devLib/*.h $(STAGING_DIR)/usr/include/
-	cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so* $(STAGING_DIR)/usr/lib/libwiringPi.so
-	cp $(PKG_BUILD_DIR)/wiringPi/*.h $(STAGING_DIR)/usr/include/
-endef
+#define Build/InstallDev
+#	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
+#	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+#	#cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so* $(STAGING_DIR)/usr/lib/libwiringPiDev.so
+#	cp $(PKG_BUILD_DIR)/devLib/*.h $(STAGING_DIR)/usr/include/
+#	#cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so* $(STAGING_DIR)/usr/lib/libwiringPi.so
+#	cp $(PKG_BUILD_DIR)/wiringPi/*.h $(STAGING_DIR)/usr/include/
+#endef
 
 $(eval $(call BuildPackage,wiringPi))
