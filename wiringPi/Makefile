@@ -39,10 +39,10 @@ define Build/Compile
 	CFLAGS="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)/wiringPi" \
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS) -L$(PKG_BUILD_DIR)/wiringPi -L$(PKG_BUILD_DIR)/devLib -L$(STAGING_DIR)/lib -L$(STAGING_DIR)/usr/lib"
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_DIR) $(1)/usr/bin
-	cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so.* $(STAGING_DIR)/usr/lib/libwiringPiDev.so
-	cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so.* $(STAGING_DIR)/usr/lib/libwiringPi.so
+
+	cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so.* $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so
+	cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so.* $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so
+
 	$(MAKE) -C $(PKG_BUILD_DIR)/gpio \
 	LINUX="$(LINUX_DIR)" \
 	CC="$(TARGET_CC)" \
@@ -62,13 +62,13 @@ define Package/wiringPi/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/wiringPi/*.h $(1)/usr/include/
 endef
 
-define Build/InstallDev 
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
-	cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so* $(STAGING_DIR)/usr/lib/libwiringPiDev.so
-	cp $(PKG_BUILD_DIR)/devLib/*.h $(STAGING_DIR)/usr/include/
-	cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so* $(STAGING_DIR)/usr/lib/libwiringPi.so
-	cp $(PKG_BUILD_DIR)/wiringPi/*.h $(STAGING_DIR)/usr/include/
-endef
+#define Build/InstallDev
+#	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
+#	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+#	cp $(PKG_BUILD_DIR)/devLib/libwiringPiDev.so* $(STAGING_DIR)/usr/lib/libwiringPiDev.so
+#	cp $(PKG_BUILD_DIR)/devLib/*.h $(STAGING_DIR)/usr/include/
+#	cp $(PKG_BUILD_DIR)/wiringPi/libwiringPi.so* $(STAGING_DIR)/usr/lib/libwiringPi.so
+#	cp $(PKG_BUILD_DIR)/wiringPi/*.h $(STAGING_DIR)/usr/include/
+#endef
 
 $(eval $(call BuildPackage,wiringPi))
