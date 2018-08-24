@@ -37,19 +37,20 @@ endef
 
 define Package/ArduiPi_OLED/install
 	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/include
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.* $(1)/usr/lib/libArduiPi_OLED.so
 	cp $(PKG_BUILD_DIR)/Adafruit_*.h $(1)/usr/include/
 	cp $(PKG_BUILD_DIR)/ArduiPi_*.h $(1)/usr/include/
 	cp $(PKG_BUILD_DIR)/bcm2835.h $(1)/usr/include/
 endef
 
-#define Build/InstallDev
-#	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
-#	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
-#	cp $(PKG_BUILD_DIR)/devLib/libArduiPi_OLEDDev.so* $(STAGING_DIR)/usr/lib/libArduiPi_OLEDDev.so
-#	cp $(PKG_BUILD_DIR)/Adafruit_*.h $(STAGING_DIR)/usr/include/
-#	cp $(PKG_BUILD_DIR)/ArduiPi_*.h $(STAGING_DIR)/usr/include/
-#	cp $(PKG_BUILD_DIR)/bcm2835.h $(STAGING_DIR)/usr/include/
-#endef
+# define Build/InstallDev
+# 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/
+# 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+# 	cp $(PKG_BUILD_DIR)/devLib/libArduiPi_OLEDDev.so* $(STAGING_DIR)/usr/lib/libArduiPi_OLED.so
+# 	cp $(PKG_BUILD_DIR)/Adafruit_*.h $(STAGING_DIR)/usr/include/
+# 	cp $(PKG_BUILD_DIR)/ArduiPi_*.h $(STAGING_DIR)/usr/include/
+# 	cp $(PKG_BUILD_DIR)/bcm2835.h $(STAGING_DIR)/usr/include/
+# endef
 
 $(eval $(call BuildPackage,ArduiPi_OLED,+wiringPi))
