@@ -1,0 +1,38 @@
+diff -u a/Makefile b/Makefile
+--- a/Makefile	2018-08-29 19:26:34.959714780 +0800
++++ b/Makefile	2018-08-29 19:24:58.467276058 +0800
+@@ -22,14 +22,6 @@
+ # hw platform as from autogen.sh choose
+ HWPLAT:=$(shell cat $(ROOT_DIR)/hwplatform)
+ 
+-# sets CCFLAGS hw platform dependant
+-ifeq ($(HWPLAT),BananaPI)
+-	CCFLAGS=-Wall -Ofast -mfpu=vfpv4 -mfloat-abi=hard -march=armv7 -mtune=cortex-a7 -DBANANAPI
+-else # fallback to raspberry
+-	# The recommended compiler flags for the Raspberry Pi
+-	CCFLAGS=-Ofast -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s
+-endif
+-
+ # Where you want it installed when you do 'make install'
+ PREFIX=/usr/local
+ 
+@@ -41,9 +33,7 @@
+ # shared library name
+ LIBNAME=$(LIB).so.1.0
+ 
+-CXX=g++
+-CC=gcc
+-CFLAGS=$(CCFLAGS)
++CFLAGS+=$(DEBUG) $(DEFS) -Wformat=2 -Wall -Wextra -Winline $(INCLUDE) -pipe -fPIC
+ 
+ # make all
+ # reinstall the library after each recompilation
+@@ -51,7 +41,7 @@
+ 
+ # Make the library
+ ArduiPi_OLED: ArduiPi_OLED.o Adafruit_GFX.o bcm2835.o Wrapper.o
+-	$(CXX) -shared -Wl,-soname,$(LIB).so.1 $(CFLAGS) $(LDFLAGS)  -o ${LIBNAME} $^ -li2c
++	$(CXX) -shared -Wl,-soname,$(LIB).so.1 $(CFLAGS) $(LDFLAGS)  -o ${LIBNAME} $^ 
+ 
+ # Library parts (use -fno-rtti flag to avoid link problem)
+ ArduiPi_OLED.o: ArduiPi_OLED.cpp
