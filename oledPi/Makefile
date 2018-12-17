@@ -44,7 +44,7 @@ define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/examples \
 	LINUX="$(LINUX_DIR)" \
 	CC="$(TARGET_CC) -I.." \
-	CXX="$(TARGET_CXX)" \
+	CXX="$(TARGET_CXX) -I.." \
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS)"
 endef
