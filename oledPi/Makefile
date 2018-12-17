@@ -66,7 +66,7 @@ endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
-	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so* $(STAGING_DIR)/usr/lib/libArduiPi_OLED.so.1
+	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so* $(STAGING_DIR)/usr/lib/
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
 	$(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
 endef
