@@ -46,7 +46,7 @@ define Build/Compile
 	CC="$(TARGET_CC) -I.." \
 	CXX="$(TARGET_CXX) -I.." \
 	STAGING_DIR="$(STAGING_DIR)" \
-	LDFLAGS="$(TARGET_LDFLAGS)"
+	LDFLAGS="$(TARGET_LDFLAGS) -L.."
 endef
 
 define Package/oledPi/install
