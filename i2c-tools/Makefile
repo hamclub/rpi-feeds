@@ -117,6 +117,11 @@ define Package/libi2c/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/libi2c.so* $(1)/usr/lib/
 endef
 
+define Build/InstallDev 
+	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(STAGING_DIR)/usr/lib/
+endef
+
 define Package/i2c-tools/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/usr/sbin/
