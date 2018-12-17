@@ -48,6 +48,7 @@ define Build/Compile
 	CXX="$(TARGET_CXX) -I.." \
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS) -L.."
+	$(RM) "$(PKG_BUILD_DIR)/libArduiPi_OLED.so"
 endef
 
 define Package/oledPi/install
@@ -63,11 +64,11 @@ define Package/oledPi/install
 #	$(CP) $(PKG_BUILD_DIR)/oledPi/*.h $(1)/usr/include/
 endef
 
-define Build/InstallDev 
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
-	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.1.0 $(STAGING_DIR)/usr/lib/
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
-	$(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
-endef
+# define Build/InstallDev 
+# 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+# 	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.1.0 $(STAGING_DIR)/usr/lib/
+# 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
+# 	$(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
+# endef
 
 $(eval $(call BuildPackage,oledPi))
