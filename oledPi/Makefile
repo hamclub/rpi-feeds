@@ -26,7 +26,7 @@ define Package/oledPi
 	CATEGORY:=Atom-GPL
 	TITLE:=oledPi
 	SUBMENU:=Libraries
-	DEPENDS:=+libstdcpp
+	DEPENDS:=+libstdcpp +libi2c
 endef
 
 define Package/oledPi/description
@@ -40,6 +40,13 @@ define Build/Compile
 	CXX="$(TARGET_CXX)" \
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS)" ArduiPi_OLED
+
+	$(MAKE) -C $(PKG_BUILD_DIR)/examples \
+	LINUX="$(LINUX_DIR)" \
+	CC="$(TARGET_CC)" \
+	CXX="$(TARGET_CXX)" \
+	STAGING_DIR="$(STAGING_DIR)" \
+	LDFLAGS="$(TARGET_LDFLAGS)"
 endef
 
 define Package/oledPi/install
@@ -59,4 +66,4 @@ define Build/InstallDev
 	$(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
 endef
 
-$(eval $(call BuildPackage,oledPi,+libstdc++))
+$(eval $(call BuildPackage,oledPi))

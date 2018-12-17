@@ -1,0 +1,34 @@
+diff --git a/examples/Makefile b/examples/Makefile
+index 98c3334..960ac21 100644
+--- a/examples/Makefile
++++ b/examples/Makefile
+@@ -18,27 +18,18 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+ # hw platform as from autogen.sh choose
+ HWPLAT:=$(shell cat $(ROOT_DIR)/../hwplatform)
+ 
+-# sets CCFLAGS hw platform dependant
+-ifeq ($(HWPLAT),BananaPI)
+-        CCFLAGS=-Wall -Ofast -mfpu=vfpv4 -mfloat-abi=hard -march=armv7 -mtune=cortex-a7 -DBANANAPI
+-else # fallback to raspberry
+-        # The recommended compiler flags for the Raspberry Pi
+-        CCFLAGS=-Ofast -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s
+-endif
+-
+ prefix := /usr/local
+ 
+ # define all programs
+ PROGRAMS = oled_demo teleinfo-oled
+ SOURCES = ${PROGRAMS:=.cpp}
+ 
+-CXX=g++
+-CFLAGS=${CCFLAGS}
++CFLAGS=$(DEBUG) $(DEFS) -Wformat=2 -Wall -Wextra -Winline $(INCLUDE)
+ 
+ all: ${PROGRAMS}
+ 
+ ${PROGRAMS}: ${SOURCES}
+-	$(CXX) $(CFLAGS) -Wall  -lArduiPi_OLED $@.cpp -o $@
++	$(CXX) $(CFLAGS) $(LDFLAGS) -lArduiPi_OLED -li2c $@.cpp -o $@
+ 
+ clean:
+ 	rm -rf $(PROGRAMS)
