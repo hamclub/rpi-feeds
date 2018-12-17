@@ -51,7 +51,7 @@ endef
 
 define Package/oledPi/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.* $(1)/usr/lib/libArduiPi_OLED.so
+	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.* $(1)/usr/lib/
 
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_BUILD_DIR)/examples/oled_demo $(1)/usr/bin/
