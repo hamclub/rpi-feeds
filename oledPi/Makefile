@@ -43,7 +43,7 @@ define Build/Compile
 
 	$(MAKE) -C $(PKG_BUILD_DIR)/examples \
 	LINUX="$(LINUX_DIR)" \
-	CC="$(TARGET_CC)" \
+	CC="$(TARGET_CC) -I.." \
 	CXX="$(TARGET_CXX)" \
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS)"
@@ -56,7 +56,8 @@ define Package/oledPi/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_BUILD_DIR)/examples/oled_demo $(1)/usr/bin/
 
-#	$(INSTALL_DIR) $(1)/usr/include
+	# $(INSTALL_DIR) $(STAGING_DIR)/usr/include
+	# $(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
 #	$(CP) $(PKG_BUILD_DIR)/devLib/*.h $(1)/usr/include/
 #	$(CP) $(PKG_BUILD_DIR)/oledPi/*.h $(1)/usr/include/
 endef
@@ -64,7 +65,6 @@ endef
 define Build/InstallDev 
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so* $(STAGING_DIR)/usr/lib/
-
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
 	$(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
 endef
