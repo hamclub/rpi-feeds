@@ -41,7 +41,7 @@ define Build/Compile
 	STAGING_DIR="$(STAGING_DIR)" \
 	LDFLAGS="$(TARGET_LDFLAGS)" ArduiPi_OLED
 
-	$(CP) "$(STAGING_DIR)/libArduiPi_OLED.so.*" "$(STAGING_DIR)/libArduiPi_OLED.so"
+	$(CP) "$(PKG_BUILD_DIR)/libArduiPi_OLED.so.*" "$(PKG_BUILD_DIR)/libArduiPi_OLED.so"
 	$(MAKE) -C $(PKG_BUILD_DIR)/examples \
 	LINUX="$(LINUX_DIR)" \
 	CC="$(TARGET_CC) -I.." \
