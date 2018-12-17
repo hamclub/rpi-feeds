@@ -53,6 +53,9 @@ define Package/oledPi/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/libArduiPi_OLED.so.* $(1)/usr/lib/libArduiPi_OLED.so
 
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) $(PKG_BUILD_DIR)/examples/oled_demo $(1)/usr/bin/
+
 #	$(INSTALL_DIR) $(1)/usr/include
 #	$(CP) $(PKG_BUILD_DIR)/devLib/*.h $(1)/usr/include/
 #	$(CP) $(PKG_BUILD_DIR)/oledPi/*.h $(1)/usr/include/
