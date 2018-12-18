@@ -33,7 +33,7 @@ define Package/liboledPi/description
 	RPi OLED userspace driver package for OpenWrt by BG5HHP
 endef
 
-TARGET_CFLAGS += -DOPENWRT=1
+MAKE_FLAGS += -DOPENWRT=1
 
 # define Build/Compile
 # 	$(MAKE) -C $(PKG_BUILD_DIR) \
