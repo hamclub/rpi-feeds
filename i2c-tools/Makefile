@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=i2c-tools
 PKG_VERSION:=4.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@KERNEL/software/utils/i2c-tools
@@ -120,6 +120,7 @@ endef
 define Build/InstallDev 
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(STAGING_DIR)/usr/lib/
+	$(CP) -r $(PKG_BUILD_DIR)/include/i2c $(STAGING_DIR)/usr/include/
 endef
 
 define Package/i2c-tools/install
