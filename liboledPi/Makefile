@@ -53,6 +53,7 @@ define Package/liboledPi/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_BUILD_DIR)/oled_demo $(1)/usr/bin/
 	$(CP) $(PKG_BUILD_DIR)/spi_test $(1)/usr/bin/
+	$(CP) $(PKG_BUILD_DIR)/oled_test $(1)/usr/bin/
 
 	# $(INSTALL_DIR) $(STAGING_DIR)/usr/include
 	# $(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
