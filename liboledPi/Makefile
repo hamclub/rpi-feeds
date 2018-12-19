@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=liboledPi
 PKG_REV:=HEAD
-PKG_VERSION:=20181212
+PKG_VERSION:=20181213
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -52,6 +52,7 @@ define Package/liboledPi/install
 
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_BUILD_DIR)/oled_demo $(1)/usr/bin/
+	$(CP) $(PKG_BUILD_DIR)/spi_test $(1)/usr/bin/
 
 	# $(INSTALL_DIR) $(STAGING_DIR)/usr/include
 	# $(CP) $(PKG_BUILD_DIR)/*.h $(STAGING_DIR)/usr/include/
