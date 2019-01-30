@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <dirent.h>
 #include <errno.h>
 
-#include <libfdt.h>
+#include "libfdt.h"
 
 #include "dtoverlay.h"
 #include "utils.h"
